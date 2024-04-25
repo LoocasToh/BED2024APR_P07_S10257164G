@@ -12,8 +12,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true })); // Set extended: true for nested objects
 app.get('/books', (req, res) => {
     res.json(books); // Send the array of books as JSON response
- });
- app.post('/books', (req, res) => {
+ });app.post('/books', (req, res) => {
     const newBook = req.body; // Get the new book data from the request body
     newBook.id = books.length + 1; // Assign a unique ID
     books.push(newBook); // Add the new book to the array
@@ -55,3 +54,6 @@ app.get('/books', (req, res) => {
           res.status(404).send('Book not found'); // Send error for non-existent book
         }
       });
+      app.listen(port, () => {
+        console.log(`Server listening on port ${port}`);
+     });
