@@ -4,6 +4,13 @@ const booksController = require("./controllers/booksController"); // Import cont
 const app = express();
 app.use(bodyParser.json()); // Parse incoming JSON data in request body
 app.use(bodyParser.urlencoded({ extended: true })); // For form data handling
+const staticMiddleware = express.static("public");
+
+// Include body-parser middleware to handle JSON data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // For form data handling
+
+app.use(staticMiddleware); // Mount the static middleware 
 
 // Define individual routes for each controller function
 app.get("/books", booksController.getAllBooks);
